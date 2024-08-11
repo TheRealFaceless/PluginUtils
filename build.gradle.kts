@@ -33,8 +33,9 @@ tasks.runServer {
     minecraftVersion("1.21")
 
     downloadPlugins {
-        modrinth("fastasyncworldedit", "2.11.0")
+        //modrinth("fastasyncworldedit", "2.11.0")
         modrinth("viaversion", "5.0.3")
+        modrinth("viabackwards", "5.0.3")
     }
 }
 
@@ -43,4 +44,15 @@ bukkit {
     apiVersion = "1.21"
     author = "Faceless"
     description = "Plugin utilities to speed up production."
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
 }
