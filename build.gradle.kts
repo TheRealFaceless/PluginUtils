@@ -1,6 +1,5 @@
 plugins {
     id("java")
-    id("maven-publish")
     id("io.papermc.paperweight.userdev") version "1.7.1"
     id("xyz.jpenilla.run-paper") version "2.3.0"
     id("net.minecrell.plugin-yml.bukkit") version "0.6.0"
@@ -10,6 +9,7 @@ plugins {
 
 group = "com.github.TheRealFaceless"
 version = "1.0"
+val libPath = "C:\\Users\\Faceless\\Desktop\\Devkit\\Libraries"
 
 paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
 
@@ -29,14 +29,27 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
 }
 
+tasks.assemble {
+    dependsOn("sourcesJar")
+}
+
+tasks.jar {
+    destinationDirectory.set(file(libPath))
+}
+
 tasks.runServer {
     minecraftVersion("1.21")
 
     downloadPlugins {
-        //modrinth("fastasyncworldedit", "2.11.0")
         modrinth("viaversion", "5.0.3")
         modrinth("viabackwards", "5.0.3")
     }
+}
+
+tasks.register<Jar>("sourcesJar") {
+    archiveClassifier.set("sources")
+    from(sourceSets.main.get().allSource)
+    destinationDirectory.set(file(libPath))
 }
 
 bukkit {
@@ -44,15 +57,4 @@ bukkit {
     apiVersion = "1.21"
     author = "Faceless"
     description = "Plugin utilities to speed up production."
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("mavenJava") {
-            from(components["java"])
-        }
-    }
-    repositories {
-        mavenLocal()
-    }
 }
