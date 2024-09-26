@@ -1,8 +1,7 @@
 package dev.faceless;
 
-import dev.faceless.commands.CommandRegistrar;
-import dev.faceless.debug.ComplexCommand;
-import dev.faceless.debug.WeatherControlCommand;
+import dev.faceless.command.Command;
+import dev.faceless.debug.CtfCommand;
 import dev.faceless.events.GlobalEventHandler;
 import dev.faceless.listeners.AbstractItemListener;
 import dev.faceless.listeners.MenuListener;
@@ -25,6 +24,7 @@ public class PluginUtils {
                 .addListener(new PaginatedMenuListener())
                 .addListener(new MenuListener());
         //CommandRegistrar.getRegistrar().registerCommand(new ComplexCommand(), new WeatherControlCommand());
+        Command.register(plugin, new CtfCommand());
     }
 
     public static void onDisable() {

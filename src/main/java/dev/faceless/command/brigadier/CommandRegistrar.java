@@ -1,4 +1,4 @@
-package dev.faceless.commands;
+package dev.faceless.command.brigadier;
 
 import com.mojang.brigadier.CommandDispatcher;
 import dev.faceless.PluginUtils;

@@ -3,7 +3,7 @@ package dev.faceless.debug;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import dev.faceless.commands.CommandWrapper;
+import dev.faceless.command.brigadier.CommandWrapper;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
