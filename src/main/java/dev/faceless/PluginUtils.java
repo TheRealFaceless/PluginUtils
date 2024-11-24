@@ -24,7 +24,7 @@ public class PluginUtils {
                 .addListener(new PaginatedMenuListener())
                 .addListener(new MenuListener());
         //CommandRegistrar.getRegistrar().registerCommand(new ComplexCommand(), new WeatherControlCommand());
-        Command.register(plugin, new CtfCommand());
+        //Command.register(plugin, new CtfCommand());
     }
 
     public static void onDisable() {

@@ -350,7 +350,6 @@ public class Command extends org.bukkit.command.Command {
                     LOGGER.warn("Attempted to register a tabCompleter but it already exists with name: {}", name);
                     continue;
                 }
-                LOGGER.info("registering tabcompleter {}", name);
                 cachedTabMethods.put(name, method);
             }
         }

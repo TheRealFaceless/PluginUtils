@@ -9,7 +9,7 @@ plugins {
 
 group = "com.github.TheRealFaceless"
 version = "1.0"
-val libPath = "C:\\Users\\Faceless\\Desktop\\Devkit\\Libraries"
+val libPath = "C:\\Users\\Faceless\\Desktop\\Main\\Libraries"
 
 paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
 

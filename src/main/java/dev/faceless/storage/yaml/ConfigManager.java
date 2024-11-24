@@ -51,6 +51,7 @@ public class ConfigManager {
                 if (isPathBlacklisted(relativePath)) continue;
                 createConfig(relativePath);
                 loadedFiles.add(file);
+                PluginUtils.getPlugin().getSLF4JLogger().info("Loaded config \"{}\" from {}", file.getName(), relativePath);
             }
         }
     }
