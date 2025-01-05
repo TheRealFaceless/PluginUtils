@@ -2,6 +2,7 @@ package dev.faceless.command.brigadier;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 
 public abstract class CommandWrapper {
@@ -11,11 +12,11 @@ public abstract class CommandWrapper {
         this.name = name;
     }
 
-    protected abstract void buildCommand(LiteralArgumentBuilder<CommandSourceStack> builder);
+    protected abstract void buildCommand(LiteralArgumentBuilder<CommandSourceStack> builder,  CommandBuildContext commandRegistryAccess);
 
-    public void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+    public void register(CommandDispatcher<CommandSourceStack> dispatcher,  CommandBuildContext commandRegistryAccess) {
         LiteralArgumentBuilder<CommandSourceStack> commandBuilder = LiteralArgumentBuilder.literal(name);
-        buildCommand(commandBuilder);
+        buildCommand(commandBuilder, commandRegistryAccess);
         dispatcher.register(commandBuilder);
     }
 }
