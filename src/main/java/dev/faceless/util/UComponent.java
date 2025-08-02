@@ -10,7 +10,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Component {
+public class UComponent {
     public enum TextFormat{LEGACY, MINI_MESSAGE}
 
     public static net.kyori.adventure.text.Component formatLegacy(String text) {

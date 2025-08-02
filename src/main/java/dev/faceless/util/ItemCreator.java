@@ -112,8 +112,8 @@ public class ItemCreator {
         bukkitMeta.displayName(name);
         return this;
     }
-    public ItemCreator setName(String name, dev.faceless.util.Component.TextFormat format) {
-        Component component = dev.faceless.util.Component.format(name, format);
+    public ItemCreator setName(String name, UComponent.TextFormat format) {
+        Component component = UComponent.format(name, format);
         bukkitMeta.displayName(component);
         return this;
     }
@@ -124,7 +124,7 @@ public class ItemCreator {
     public ItemCreator setLore(int line, String text) {
         List<Component> lore = bukkitMeta.lore();
         if(lore == null) lore = new ArrayList<>();
-        lore.set(line, dev.faceless.util.Component.formatMini(text));
+        lore.set(line, UComponent.formatMini(text));
         return this;
     }
     public ItemCreator setLore(int line, Component text) {
@@ -134,7 +134,7 @@ public class ItemCreator {
             lore.add(Component.empty());
         }
         lore.set(line, text);
-        dev.faceless.util.Component.trimTrailingEmptyLore(lore);
+        UComponent.trimTrailingEmptyLore(lore);
         bukkitMeta.lore(lore);
         return this;
     }

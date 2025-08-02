@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
+import org.bukkit.SoundCategory;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
@@ -78,6 +80,18 @@ public abstract class Menu {
 
             return true;
         });
+    }
+
+    protected void playSound(Player player, Sound sound) {
+        player.playSound(player.getLocation(), sound, SoundCategory.MASTER, 0.5f, 1f);
+    }
+
+    protected void playSound(Player player, Sound sound, float volume, float pitch) {
+        player.playSound(player.getLocation(), sound, SoundCategory.MASTER, volume, pitch);
+    }
+
+    protected void playUiClick(Player player) {
+        playSound(player, Sound.UI_BUTTON_CLICK);
     }
 
     public interface MenuClick {

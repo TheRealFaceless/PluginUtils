@@ -53,6 +53,8 @@ tasks.register<Jar>("sourcesJar") {
 
 bukkit {
     main = "dev.faceless.debug.Main"
+    name = "PluginUtils"
+    version = "2.0"
     apiVersion = "1.21"
     author = "Faceless"
     description = "Plugin utilities to speed up production."

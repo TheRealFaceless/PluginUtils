@@ -1,5 +1,6 @@
 package dev.faceless.menu;
 
+import dev.faceless.util.UComponent;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
@@ -20,7 +21,7 @@ public class ChatInputService {
 
     public void handleChatEvent(Player player, AsyncChatEvent event) {
         Consumer<String> cb = callbacks.remove(player.getUniqueId());
-        String message = dev.faceless.util.Component.getContent(event.message());
+        String message = UComponent.getContent(event.message());
         if(message == null) throw new IllegalStateException("message is null at " + this.getClass());
         if(message.equalsIgnoreCase("cancel")) {
             cb.accept(message);
