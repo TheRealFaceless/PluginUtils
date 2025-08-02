@@ -1,8 +1,8 @@
 plugins {
     id("java")
     id("io.papermc.paperweight.userdev") version "2.0.0-beta.18"
-    id("xyz.jpenilla.run-paper") version "2.3.1"
-    id("de.eldoria.plugin-yml.bukkit") version "0.7.1"
+    //id("xyz.jpenilla.run-paper") version "2.3.1"
+    //id("de.eldoria.plugin-yml.bukkit") version "0.7.1"
     id("io.freefair.lombok") version "8.14"
 }
 
@@ -34,8 +34,10 @@ tasks.assemble {
 
 tasks.jar {
     destinationDirectory.set(file(libPath))
+    exclude("META-INF/**")
 }
 
+/*
 tasks.runServer {
     minecraftVersion("1.21.5")
 
@@ -44,6 +46,7 @@ tasks.runServer {
         modrinth("viabackwards", "5.4.2")
     }
 }
+ */
 
 tasks.register<Jar>("sourcesJar") {
     archiveClassifier.set("sources")
@@ -51,11 +54,13 @@ tasks.register<Jar>("sourcesJar") {
     destinationDirectory.set(file(libPath))
 }
 
+/*
 bukkit {
     main = "dev.faceless.debug.Main"
     name = "PluginUtils"
-    version = "2.0"
+    version = "${project.version}"
     apiVersion = "1.21"
     author = "Faceless"
     description = "Plugin utilities to speed up production."
 }
+ */
