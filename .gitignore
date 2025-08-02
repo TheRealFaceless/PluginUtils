@@ -1,5 +1,4 @@
 run
-gradle
 .gradle
 build/
 !**/src/main/**/build/
