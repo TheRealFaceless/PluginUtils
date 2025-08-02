@@ -115,4 +115,79 @@ public class MenuUtil {
             inventory.setItem(rightIndex, item);
         }
     }
+
+    public static void addBorders(Inventory inventory, Material mat, int rowOffset) {
+        ItemStack item = ItemCreator.createNameless(mat);
+        addBorders(inventory, item, rowOffset);
+    }
+
+    public static void addBorders(Inventory inventory, ItemStack item, int rowOffset) {
+        int size = inventory.getSize();
+        int rows = size / 9;
+        int bottomRow = rows - 1 - rowOffset;
+
+        // Top border
+        for (int i = rowOffset * 9; i < rowOffset * 9 + 9; i++) {
+            inventory.setItem(i, item);
+        }
+        // Bottom border
+        for (int i = bottomRow * 9; i < bottomRow * 9 + 9; i++) {
+            inventory.setItem(i, item);
+        }
+        // Left & right borders
+        for (int r = rowOffset + 1; r < bottomRow; r++) {
+            inventory.setItem(r * 9, item);
+            inventory.setItem(r * 9 + 8, item);
+        }
+    }
+
+    public static void addTopLayer(Inventory inventory, Material mat, int rowOffset) {
+        ItemStack item = ItemCreator.createNameless(mat);
+        addTopLayer(inventory, item, rowOffset);
+    }
+
+    public static void addTopLayer(Inventory inventory, ItemStack item, int rowOffset) {
+        int start = rowOffset * 9;
+        for (int i = start; i < start + 9; i++) {
+            inventory.setItem(i, item);
+        }
+    }
+
+    public static void addBottomLayer(Inventory inventory, Material mat, int rowOffset) {
+        ItemStack item = ItemCreator.createNameless(mat);
+        addBottomLayer(inventory, item, rowOffset);
+    }
+
+    public static void addBottomLayer(Inventory inventory, ItemStack item, int rowOffset) {
+        int rows = inventory.getSize() / 9;
+        int row = rows - 1 - rowOffset;
+        int start = row * 9;
+        for (int i = start; i < start + 9; i++) {
+            inventory.setItem(i, item);
+        }
+    }
+
+    public static void addLeftLayer(Inventory inventory, Material mat, int rowOffset) {
+        ItemStack item = ItemCreator.createNameless(mat);
+        addLeftLayer(inventory, item, rowOffset);
+    }
+
+    public static void addLeftLayer(Inventory inventory, ItemStack item, int rowOffset) {
+        int rows = inventory.getSize() / 9;
+        for (int r = rowOffset; r < rows - rowOffset; r++) {
+            inventory.setItem(r * 9, item);
+        }
+    }
+
+    public static void addRightLayer(Inventory inventory, Material mat, int rowOffset) {
+        ItemStack item = ItemCreator.createNameless(mat);
+        addRightLayer(inventory, item, rowOffset);
+    }
+
+    public static void addRightLayer(Inventory inventory, ItemStack item, int rowOffset) {
+        int rows = inventory.getSize() / 9;
+        for (int r = rowOffset; r < rows - rowOffset; r++) {
+            inventory.setItem(r * 9 + 8, item);
+        }
+    }
 }

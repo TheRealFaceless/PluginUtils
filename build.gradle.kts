@@ -1,15 +1,14 @@
 plugins {
     id("java")
-    id("io.papermc.paperweight.userdev") version "1.7.1"
-    id("xyz.jpenilla.run-paper") version "2.3.0"
-    id("net.minecrell.plugin-yml.bukkit") version "0.6.0"
-    id("io.freefair.lombok") version "8.7.1"
-
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.18"
+    id("xyz.jpenilla.run-paper") version "2.3.1"
+    id("de.eldoria.plugin-yml.bukkit") version "0.7.1"
+    id("io.freefair.lombok") version "8.14"
 }
 
 group = "com.github.TheRealFaceless"
 version = "1.0"
-val libPath = "C:\\Users\\Faceless\\Desktop\\Main\\Libraries"
+val libPath = "C:\\Users\\Faceless\\Documents\\Libraries"
 
 paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
 
@@ -25,8 +24,8 @@ repositories {
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.21.3-R0.1-SNAPSHOT")
-    compileOnly("io.papermc.paper:paper-api:1.21.3-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.21.5-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.5-R0.1-SNAPSHOT")
 }
 
 tasks.assemble {
@@ -38,11 +37,11 @@ tasks.jar {
 }
 
 tasks.runServer {
-    minecraftVersion("1.21.3")
+    minecraftVersion("1.21.5")
 
     downloadPlugins {
-        modrinth("viaversion", "5.0.3")
-        modrinth("viabackwards", "5.0.3")
+        modrinth("viaversion", "5.4.2")
+        modrinth("viabackwards", "5.4.2")
     }
 }
 

@@ -7,6 +7,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -17,6 +18,7 @@ import java.util.Set;
 public class Config {
 
     private final String path;
+    private final JavaPlugin plugin;
     @Getter private FileConfiguration config;
     @Getter private File configFile;
     private final File dataFolder;
@@ -27,15 +29,15 @@ public class Config {
      * If the path doesn't exist, it will be created.
      */
     public Config(String path) {
+        this.plugin = PluginUtils.getPlugin();
         this.path = path.endsWith(".yml") ? path : path + ".yml";
-        this.dataFolder = PluginUtils.getPlugin().getDataFolder();
+        this.dataFolder = plugin.getDataFolder();
         try {
             init();
         } catch (IOException e) {
             Bukkit.getConsoleSender().sendMessage("Creation of storage file at path " + path + " failed!!");
             throw new RuntimeException(e);
         }
-        ConfigManager.getManager().register(path, this);
     }
 
     public void init() throws IOException {
@@ -85,7 +87,7 @@ public class Config {
     }
 
     public String getRelativePath() {
-        return configFile.getPath().replace("plugins" + File.separator + PluginUtils.getPlugin().getName() + File.separator, "");
+        return configFile.getPath().replace("plugins" + File.separator + plugin.getName() + File.separator, "");
     }
 
     @SuppressWarnings("unchecked")
