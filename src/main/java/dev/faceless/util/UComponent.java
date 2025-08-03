@@ -1,10 +1,12 @@
 package dev.faceless.util;
 
+import io.papermc.paper.adventure.PaperAdventure;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import net.minecraft.network.chat.Component;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -81,5 +83,13 @@ public class UComponent {
 
         lore.clear();
         lore.addAll(trimmed);
+    }
+
+    public static net.kyori.adventure.text.Component toPaper(Component nmsComponent) {
+        return PaperAdventure.asAdventure(nmsComponent);
+    }
+
+    public static Component toNms(net.kyori.adventure.text.Component paperComponent) {
+        return PaperAdventure.asVanilla(paperComponent);
     }
 }
