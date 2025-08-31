@@ -18,10 +18,13 @@ import java.util.stream.Collectors;
 public class PackManager {
     public static final Config CONFIG;
     public static final int PORT;
+    @Getter private boolean enabled = false;
+
     static {
         CONFIG = new Config("resource-packs.yml");
         if (!CONFIG.contains("port")) {
             CONFIG.set("port", 8069);
+            CONFIG.getConfig().setComments("port", List.of("Restart server for port to change"));
             CONFIG.save();
         }
         PORT = CONFIG.get("port", Integer.class);
@@ -41,6 +44,7 @@ public class PackManager {
         if (!resourceDir.exists()) resourceDir.mkdirs();
         reloadResourcePacks();
         init();
+        enabled = true;
     }
 
     private void scheduleAutosendSave() {
@@ -253,9 +257,20 @@ public class PackManager {
 
 
     public void disable() {
+        if (!enabled) return;
+
         stopHttpServer();
-        PackManager.CONFIG.save();
+
+        Bukkit.getOnlinePlayers().forEach(this::removeAllPacks);
+
+        autoSendResourcePacks.clear();
+        resourcePacks.clear();
+        playerPacks.clear();
+
+        enabled = false;
+        LOGGER.info("PackManager disabled and cleared all runtime state.");
     }
+
 
     private void startHttpServer() {
         try {
